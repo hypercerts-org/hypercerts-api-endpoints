@@ -24,7 +24,7 @@ test('presentation keeps the endpoint contract but hides provenance and incomple
   assert.match(presentation.info.description, /Explore public Hypercerts XRPC queries/i);
   assert.doesNotMatch(presentation.info.description, /response schemas may be partial|CORS|browser/i);
   assert.deepEqual(presentation.servers, [
-    { url: 'https://happyview-test.up.railway.app', description: 'HappyView test (default)' },
+    { url: 'https://api.test.hypercerts.dev', description: 'API test (default)' },
     { url: 'http://127.0.0.1:8080', description: 'Local (127.0.0.1:8080)' },
   ]);
   assert.equal(Object.hasOwn(presentation, 'x-hypercerts-source'), false);
@@ -49,7 +49,7 @@ test('presentation keeps the endpoint contract but hides provenance and incomple
 test('build-time HappyView server config keeps an ordered default and rejects invalid settings', () => {
   const parse = presentationModule.parseHappyviewServers;
   assert.deepEqual(parse(undefined), [
-    { label: 'HappyView test', url: 'https://happyview-test.up.railway.app' },
+    { label: 'API test', url: 'https://api.test.hypercerts.dev' },
   ]);
   assert.deepEqual(parse(JSON.stringify([
     { label: 'Staging', url: 'https://staging.example.test/api/' },

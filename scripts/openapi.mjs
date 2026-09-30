@@ -1,4 +1,4 @@
-export const DEFAULT_SERVER_URL = 'https://happyview-test.up.railway.app';
+export const DEFAULT_SERVER_URL = 'https://api.test.hypercerts.dev';
 
 const SCHEMA_FIELDS = [
   'type',
@@ -213,7 +213,7 @@ export function buildOpenApi(lexicons, metadata = {}) {
       version: metadata.version ?? 'source-snapshot',
       description: 'Public Hypercerts XRPC endpoints. Coverage labels describe local source manifests, not deployment or runtime verification.',
     },
-    servers: [{ url: metadata.serverUrl ?? DEFAULT_SERVER_URL, description: 'HappyView test server (default)' }],
+    servers: [{ url: metadata.serverUrl ?? DEFAULT_SERVER_URL, description: 'API test server (default)' }],
     tags: [...tags].sort().map((name) => ({ name })),
     paths,
     components: { schemas },

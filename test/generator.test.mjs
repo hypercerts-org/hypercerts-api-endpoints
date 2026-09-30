@@ -60,6 +60,9 @@ test('OpenAPI generation preserves query contract and marks unresolved refs', ()
   const tags = operation.parameters.find((parameter) => parameter.name === 'tags');
 
   assert.equal(document.openapi, '3.1.0');
+  assert.deepEqual(document.servers, [
+    { url: 'https://api.test.hypercerts.dev', description: 'API test server (default)' },
+  ]);
   assert.equal(operation.description, 'Search demo records.');
   assert.equal(operation['x-hypercerts-coverage'], 'branch-only');
   assert.deepEqual(operation['x-hypercerts-source'], { branch: 'api/demo', commit: 'abc123' });

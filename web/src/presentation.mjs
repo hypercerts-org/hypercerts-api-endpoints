@@ -1,4 +1,4 @@
-export const DEFAULT_SERVER_URL = 'https://happyview-test.up.railway.app';
+export const DEFAULT_SERVER_URL = 'https://api.test.hypercerts.dev';
 export const LOCAL_SERVER_URL = 'http://127.0.0.1:8080';
 
 const PRESENTATION_DESCRIPTION =
@@ -34,12 +34,12 @@ export function normalizeBaseUrl(input) {
 
 /**
  * Parse build-time server choices. The first configured server is the default;
- * omitting the variable keeps the bundled HappyView test URL.
+ * omitting the variable keeps the bundled API test URL.
  * @param {string | undefined} input
  */
 export function parseHappyviewServers(input) {
   if (input === undefined) {
-    return [{ label: 'HappyView test', url: DEFAULT_SERVER_URL }];
+    return [{ label: 'API test', url: DEFAULT_SERVER_URL }];
   }
 
   let configured;
@@ -47,12 +47,12 @@ export function parseHappyviewServers(input) {
     configured = JSON.parse(input);
   } catch {
     throw new TypeError(
-      'VITE_HAPPYVIEW_SERVERS must be a JSON array of {"label","url"} entries. Set valid JSON or unset it to use the HappyView test URL.',
+      'VITE_HAPPYVIEW_SERVERS must be a JSON array of {"label","url"} entries. Set valid JSON or unset it to use the API test URL.',
     );
   }
   if (!Array.isArray(configured) || configured.length === 0) {
     throw new TypeError(
-      'VITE_HAPPYVIEW_SERVERS must contain at least one {"label","url"} entry. Add a server or unset it to use the HappyView test URL.',
+      'VITE_HAPPYVIEW_SERVERS must contain at least one {"label","url"} entry. Add a server or unset it to use the API test URL.',
     );
   }
 
@@ -96,7 +96,7 @@ export function createPresentationSpec(source) {
     description: PRESENTATION_DESCRIPTION,
   };
   spec.servers = [
-    { url: DEFAULT_SERVER_URL, description: 'HappyView test (default)' },
+    { url: DEFAULT_SERVER_URL, description: 'API test (default)' },
     { url: LOCAL_SERVER_URL, description: 'Local (127.0.0.1:8080)' },
   ];
 
