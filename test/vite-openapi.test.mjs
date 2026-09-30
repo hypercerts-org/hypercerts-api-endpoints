@@ -9,6 +9,26 @@ import viteConfig from '../vite.config.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
+test('Vite rejects invalid HappyView server settings before serving the explorer', async () => {
+  const previous = process.env.VITE_HAPPYVIEW_SERVERS;
+  process.env.VITE_HAPPYVIEW_SERVERS = '[]';
+  let server;
+  try {
+    await assert.rejects(async () => {
+      server = await createServer({
+        ...viteConfig,
+        configFile: false,
+        logLevel: 'silent',
+        server: { host: '127.0.0.1', port: 0, strictPort: false, hmr: false },
+      });
+    }, /VITE_HAPPYVIEW_SERVERS/);
+  } finally {
+    await server?.close();
+    if (previous === undefined) delete process.env.VITE_HAPPYVIEW_SERVERS;
+    else process.env.VITE_HAPPYVIEW_SERVERS = previous;
+  }
+});
+
 test('Vite serves the website favicon and fonts byte-for-byte', async () => {
   const assets = [
     { url: '/favicon.ico', sha256: '02ffb7267d768e745caadaaab70e448d6a1c7ff10a476bb46e0fafd88fea9c37' },

@@ -3,7 +3,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
-import { createPresentationSpec, normalizeBaseUrl } from '../web/src/presentation.mjs';
+import * as presentationModule from '../web/src/presentation.mjs';
+
+const { createPresentationSpec, normalizeBaseUrl } = presentationModule;
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const source = JSON.parse(await readFile(path.join(root, 'openapi.json'), 'utf8'));
@@ -19,7 +21,8 @@ test('presentation keeps the endpoint contract but hides provenance and incomple
     source.paths[endpointPath].get.parameters,
     'descriptions, requirements, array serialization, and constraints remain available',
   );
-  assert.match(presentation.info.description, /response schemas may be partial/i);
+  assert.match(presentation.info.description, /Explore public Hypercerts XRPC queries/i);
+  assert.doesNotMatch(presentation.info.description, /response schemas may be partial|CORS|browser/i);
   assert.deepEqual(presentation.servers, [
     { url: 'https://happyview-test.up.railway.app', description: 'HappyView test (default)' },
     { url: 'http://127.0.0.1:8080', description: 'Local (127.0.0.1:8080)' },
@@ -41,6 +44,32 @@ test('presentation keeps the endpoint contract but hides provenance and incomple
   );
   assert.ok(placeholderName, 'the source snapshot contains an unresolved response reference');
   assert.deepEqual(presentation.components.schemas[placeholderName], {});
+});
+
+test('build-time HappyView server config keeps an ordered default and rejects invalid settings', () => {
+  const parse = presentationModule.parseHappyviewServers;
+  assert.deepEqual(parse(undefined), [
+    { label: 'HappyView test', url: 'https://happyview-test.up.railway.app' },
+  ]);
+  assert.deepEqual(parse(JSON.stringify([
+    { label: 'Staging', url: 'https://staging.example.test/api/' },
+    { label: 'Production', url: 'https://api.example.test' },
+  ])), [
+    { label: 'Staging', url: 'https://staging.example.test/api' },
+    { label: 'Production', url: 'https://api.example.test' },
+  ]);
+
+  for (const invalid of [
+    '',
+    'not json',
+    '[]',
+    '[{"url":"https://api.example.test"}]',
+    '[{"label":"Test","url":"https://user:secret@api.example.test"}]',
+    '[{"label":"Test","url":"https://api.example.test?token=secret"}]',
+    '[{"label":"One","url":"https://api.example.test"},{"label":"Two","url":"https://api.example.test/"}]',
+  ]) {
+    assert.throws(() => parse(invalid), /VITE_HAPPYVIEW_SERVERS/, invalid);
+  }
 });
 
 test('base URL validation accepts the default and local servers but rejects unsafe custom URLs', () => {

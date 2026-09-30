@@ -5,19 +5,18 @@ import generatedSpec from '../../openapi.json';
 import { createClientConfiguration } from './client-configuration.mjs';
 import {
   createPresentationSpec,
-  DEFAULT_SERVER_URL,
   LOCAL_SERVER_URL,
   normalizeBaseUrl,
+  parseHappyviewServers,
 } from './presentation.mjs';
 import './styles.css';
 
-type ServerMode = 'default' | 'local' | 'custom';
-
 const presentationSpec = createPresentationSpec(generatedSpec);
+const configuredServers = parseHappyviewServers(import.meta.env.VITE_HAPPYVIEW_SERVERS);
 
 export function App() {
-  const [serverMode, setServerMode] = useState<ServerMode>('default');
-  const [activeServer, setActiveServer] = useState(DEFAULT_SERVER_URL);
+  const [serverMode, setServerMode] = useState(configuredServers[0].url);
+  const [activeServer, setActiveServer] = useState(configuredServers[0].url);
   const [customServer, setCustomServer] = useState('');
   const [customError, setCustomError] = useState('');
 
@@ -64,12 +63,15 @@ export function App() {
   );
 
   function handleServerModeChange(event: ChangeEvent<HTMLSelectElement>) {
-    const nextMode = event.target.value as ServerMode;
+    const nextMode = event.target.value;
     setServerMode(nextMode);
     setCustomError('');
 
-    if (nextMode === 'default') setActiveServer(DEFAULT_SERVER_URL);
     if (nextMode === 'local') setActiveServer(LOCAL_SERVER_URL);
+    else if (nextMode !== 'custom') {
+      const selected = configuredServers.find((server) => server.url === nextMode);
+      if (selected) setActiveServer(selected.url);
+    }
   }
 
   function applyCustomServer(event: FormEvent<HTMLFormElement>) {
@@ -93,7 +95,11 @@ export function App() {
           <div className="server-control">
             <label htmlFor="server-mode">Request server</label>
             <Select id="server-mode" value={serverMode} onChange={handleServerModeChange}>
-              <option value="default">HappyView test · default</option>
+              {configuredServers.map((server, index) => (
+                <option key={server.url} value={server.url}>
+                  {server.label}{index === 0 ? ' · default' : ''}
+                </option>
+              ))}
               <option value="local">Local · 127.0.0.1:8080</option>
               <option value="custom">Custom base URL…</option>
             </Select>
@@ -120,13 +126,6 @@ export function App() {
           </a>
         </div>
       </header>
-
-      <aside className="usage-note" role="note">
-        <span className="note-icon" aria-hidden="true">i</span>
-        <p>
-          Some response schemas may be partial where referenced types are outside the local snapshots. Requests go directly from your browser only after you press <strong>Send</strong>; browser CORS policies may block them.
-        </p>
-      </aside>
 
       <main className="reference-main" aria-label="Hypercerts API endpoints">
         <ApiReferenceReact key={activeServer} configuration={configuration} />

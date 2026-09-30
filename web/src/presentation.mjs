@@ -2,7 +2,7 @@ export const DEFAULT_SERVER_URL = 'https://happyview-test.up.railway.app';
 export const LOCAL_SERVER_URL = 'http://127.0.0.1:8080';
 
 const PRESENTATION_DESCRIPTION =
-  'Public Hypercerts XRPC endpoints. Response schemas may be partial where they depend on types outside the local snapshots. Requests are sent directly from your browser only after you select Send; browser CORS policies may block them.';
+  'Explore public Hypercerts XRPC queries. Browse endpoints, inspect parameters, and try requests against your selected server.';
 
 /**
  * Validate and normalize a server base URL for the request client.
@@ -30,6 +30,58 @@ export function normalizeBaseUrl(input) {
   }
 
   return `${url.origin}${url.pathname.replace(/\/+$/, '')}`;
+}
+
+/**
+ * Parse build-time server choices. The first configured server is the default;
+ * omitting the variable keeps the bundled HappyView test URL.
+ * @param {string | undefined} input
+ */
+export function parseHappyviewServers(input) {
+  if (input === undefined) {
+    return [{ label: 'HappyView test', url: DEFAULT_SERVER_URL }];
+  }
+
+  let configured;
+  try {
+    configured = JSON.parse(input);
+  } catch {
+    throw new TypeError(
+      'VITE_HAPPYVIEW_SERVERS must be a JSON array of {"label","url"} entries. Set valid JSON or unset it to use the HappyView test URL.',
+    );
+  }
+  if (!Array.isArray(configured) || configured.length === 0) {
+    throw new TypeError(
+      'VITE_HAPPYVIEW_SERVERS must contain at least one {"label","url"} entry. Add a server or unset it to use the HappyView test URL.',
+    );
+  }
+
+  const seenUrls = new Set();
+  return configured.map((server, index) => {
+    const entry = `VITE_HAPPYVIEW_SERVERS entry ${index + 1}`;
+    if (
+      !server ||
+      typeof server !== 'object' ||
+      Array.isArray(server) ||
+      typeof server.label !== 'string' ||
+      !server.label.trim() ||
+      typeof server.url !== 'string'
+    ) {
+      throw new TypeError(`${entry} needs a non-empty label and an http(s) URL. Fix the entry or remove it.`);
+    }
+
+    let url;
+    try {
+      url = normalizeBaseUrl(server.url);
+    } catch (error) {
+      throw new TypeError(`${entry} has an invalid URL: ${error.message}`);
+    }
+    if (seenUrls.has(url)) {
+      throw new TypeError(`${entry} repeats ${url}. Remove the duplicate URL or choose a different server.`);
+    }
+    seenUrls.add(url);
+    return { label: server.label.trim(), url };
+  });
 }
 
 /**

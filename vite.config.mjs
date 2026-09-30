@@ -2,7 +2,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
+import { parseHappyviewServers } from './web/src/presentation.mjs';
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const openApiPath = path.join(projectRoot, 'openapi.json');
@@ -36,9 +37,18 @@ function openApiArtifact() {
   };
 }
 
+function validateHappyviewServers() {
+  return {
+    name: 'validate-happyview-servers',
+    config(_config, { mode }) {
+      parseHappyviewServers(loadEnv(mode, projectRoot, 'VITE_HAPPYVIEW_SERVERS').VITE_HAPPYVIEW_SERVERS);
+    },
+  };
+}
+
 export default defineConfig({
   root: projectRoot,
-  plugins: [react(), openApiArtifact()],
+  plugins: [react(), openApiArtifact(), validateHappyviewServers()],
   publicDir: path.join(projectRoot, 'public'),
   build: {
     outDir: 'dist',

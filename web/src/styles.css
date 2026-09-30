@@ -244,43 +244,8 @@ select {
   color: var(--brand-accent);
 }
 
-.usage-note {
-  display: flex;
-  min-height: 42px;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 28px;
-  border-bottom: 1px solid var(--ui-separator);
-  background: var(--surface-cream);
-  color: var(--ui-grey-dark);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.usage-note p {
-  margin: 0;
-}
-
-.usage-note strong {
-  color: var(--brand-black);
-  font-weight: 600;
-}
-
-.note-icon {
-  display: grid;
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  place-items: center;
-  border: 1px solid var(--brand-accent);
-  border-radius: 50%;
-  color: var(--brand-accent);
-  font-size: 10px;
-  font-weight: 700;
-}
-
 .reference-main {
-  min-height: calc(100vh - 104px);
+  min-height: calc(100vh - 62px);
 }
 
 .sr-only {
@@ -310,11 +275,6 @@ select {
 
   .custom-server-form input {
     width: min(250px, 54vw);
-  }
-
-  .usage-note {
-    align-items: flex-start;
-    padding: 9px 16px;
   }
 }
 
