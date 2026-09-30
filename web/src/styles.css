@@ -36,7 +36,6 @@
   --brand-accent: #af2901;
   --status-danger-bg: #f9eeeb;
   --body-font-family: "Switzer Variable", system-ui, sans-serif;
-  --display-font-family: "Instrument Serif", Georgia, serif;
   color-scheme: light;
   font-family: var(--body-font-family);
   font-synthesis: none;
@@ -55,11 +54,6 @@
   --scalar-color-3: var(--ui-grey-muted);
   --scalar-color-accent: var(--brand-accent);
   --scalar-border-color: var(--ui-separator);
-}
-
-.scalar-app .section-header,
-.scalar-app .operation-title {
-  font-family: var(--display-font-family);
 }
 
 * {
