@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Hypercerts API",
-    "version": "snapshot-4a3477631e08",
+    "version": "snapshot-134b24d020a0",
     "description": "Public Hypercerts XRPC endpoints. Coverage labels describe local source manifests, not deployment or runtime verification."
   },
   "servers": [
@@ -74,7 +74,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-organization-queries",
           "branch": "api/organization-queries",
-          "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+          "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
           "path": "hypercerts-api/lexicons/app.certified.actor.getOrganization.json",
           "activeModule": "modules/organization/manifest.json"
         },
@@ -86,6 +86,65 @@
           {
             "name": "RecordNotFound",
             "description": "No indexed organization sidecar exists for this DID."
+          }
+        ]
+      }
+    },
+    "/xrpc/app.certified.actor.getOrganizations": {
+      "get": {
+        "operationId": "app_certified_actor_getOrganizations",
+        "tags": [
+          "app.certified.actor"
+        ],
+        "description": "Returns one organization result for each supplied actor DID, preserving input order and duplicates. Authentication is not required. actors is a required nonempty array of 1..100 DIDs, counted before deduplication and encoded as repeated unbracketed query keys. Handles are not resolved; the query uses indexed records only and makes no network calls. A missing organization sidecar is returned as null, and present sidecars include the associated profile or null. This endpoint does not paginate.",
+        "parameters": [
+          {
+            "name": "actors",
+            "in": "query",
+            "required": true,
+            "description": "Actor DIDs to look up; repeated unbracketed values preserve their original order and duplicates.",
+            "schema": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "items": {
+                "type": "string",
+                "format": "did"
+              }
+            },
+            "style": "form",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app.certified.actor.getOrganizations.output"
+                }
+              }
+            }
+          }
+        },
+        "x-lexicon-id": "app.certified.actor.getOrganizations",
+        "x-hypercerts-coverage": "branch-only",
+        "x-hypercerts-source": {
+          "worktree": "happyview-organization-queries",
+          "branch": "api/organization-queries",
+          "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
+          "path": "hypercerts-api/lexicons/app.certified.actor.getOrganizations.json",
+          "activeModule": "modules/organization/manifest.json"
+        },
+        "x-lexicon-errors": [
+          {
+            "name": "InvalidRequest",
+            "description": "actors must contain 1 through 100 valid DIDs; unknown query parameters are not accepted."
+          },
+          {
+            "name": "OrganizationQueryFailed",
+            "description": "The indexed organization sidecars or associated profiles could not be queried."
           }
         ]
       }
@@ -124,9 +183,9 @@
         "x-lexicon-id": "app.certified.actor.getProfile",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.actor.getProfile.json",
           "activeModule": "modules/profile/manifest.json"
         },
@@ -195,9 +254,9 @@
         "x-lexicon-id": "app.certified.actor.getProfiles",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.actor.getProfiles.json",
           "activeModule": "modules/profile/manifest.json"
         },
@@ -219,24 +278,8 @@
         "tags": [
           "app.certified.actor"
         ],
-        "description": "Lists actors with indexed organization sidecars. Repeated unbracketed array values accept at most 100 entries; values within actors and organizationTypes use OR, while distinct filters use AND. Omitted visibility imposes no restriction, including public, unlisted, and unspecified values; supplied visibility is an exact string match. Results sort by (createdAt, uri), default desc, with a direction-bound opaque cursor. Keep other parameters unchanged between pages. Authentication is not required.",
+        "description": "Lists actors with indexed organization sidecars. organizationTypes accepts at most 100 repeated unbracketed values and uses OR within that filter; distinct filters use AND. Omitted visibility imposes no restriction, including public, unlisted, and unspecified values; supplied visibility is an exact string match. Results sort by (createdAt, uri), default desc, with a direction-bound opaque cursor. Keep other parameters unchanged between pages. Authentication is not required.",
         "parameters": [
-          {
-            "name": "actors",
-            "in": "query",
-            "required": false,
-            "description": "Actor DIDs whose organization sidecars are included; DIDs only, with OR within this filter.",
-            "schema": {
-              "type": "array",
-              "maxItems": 100,
-              "items": {
-                "type": "string",
-                "format": "did"
-              }
-            },
-            "style": "form",
-            "explode": true
-          },
           {
             "name": "organizationTypes",
             "in": "query",
@@ -313,7 +356,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-organization-queries",
           "branch": "api/organization-queries",
-          "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+          "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
           "path": "hypercerts-api/lexicons/app.certified.actor.listOrganizations.json",
           "activeModule": "modules/organization/manifest.json"
         },
@@ -331,7 +374,7 @@
         "tags": [
           "app.certified.actor"
         ],
-        "description": "Public listing of indexed Certified profiles. Authentication is not required. actors uses repeated unbracketed keys, accepts at most 100 supplied DIDs before deduplication, and ORs them together. This listing has no text-search parameter; use searchProfiles for profile text discovery. The handler applies limit=25 and sortDirection=desc when omitted; limit is 1..100. Results sort by a valid zoned createdAt, otherwise indexedAt (or stored row creation time when indexedAt is absent), then URI, both in the requested direction. The opaque cursor is direction-bound and provides no snapshot guarantee; keep other parameters unchanged between pages. Unknown parameters and repeated scalar keys are rejected.",
+        "description": "Public paginated discovery listing of indexed Certified profiles. Authentication is not required. This endpoint accepts pagination parameters only; use getProfiles for actor-specific batch lookup and searchProfiles for profile-text search. The handler applies limit=25 and sortDirection=desc when omitted; limit is 1..100. Results sort by a valid zoned createdAt, otherwise indexedAt (or stored row creation time when indexedAt is absent), then URI, both in the requested direction. The opaque cursor is direction-bound and provides no snapshot guarantee; keep other parameters unchanged between pages. Unknown parameters and repeated scalar keys are rejected.",
         "parameters": [
           {
             "name": "sortDirection",
@@ -345,22 +388,6 @@
                 "desc"
               ]
             }
-          },
-          {
-            "name": "actors",
-            "in": "query",
-            "required": false,
-            "description": "DIDs whose indexed profiles should be returned. Repeated values are ORed; handles are not resolved.",
-            "schema": {
-              "type": "array",
-              "maxItems": 100,
-              "items": {
-                "type": "string",
-                "format": "did"
-              }
-            },
-            "style": "form",
-            "explode": true
           },
           {
             "name": "limit",
@@ -398,9 +425,9 @@
         "x-lexicon-id": "app.certified.actor.listProfiles",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.actor.listProfiles.json",
           "activeModule": "modules/profile/manifest.json"
         },
@@ -525,7 +552,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-organization-queries",
           "branch": "api/organization-queries",
-          "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+          "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
           "path": "hypercerts-api/lexicons/app.certified.actor.searchOrganizations.json",
           "activeModule": "modules/organization/manifest.json"
         },
@@ -619,9 +646,9 @@
         "x-lexicon-id": "app.certified.actor.searchProfiles",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.actor.searchProfiles.json",
           "activeModule": "modules/profile/manifest.json"
         },
@@ -673,7 +700,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-badge-definitions-queries",
           "branch": "api/badge-definitions",
-          "commit": "06ec76166850779e638c4da27934fafae81b135c",
+          "commit": "a0455e92881077b3da33c7753fdb4486712d8f5b",
           "path": "hypercerts-api/lexicons/app.certified.badge.getBadgeDefinition.json",
           "activeModule": null
         },
@@ -782,7 +809,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-badge-definitions-queries",
           "branch": "api/badge-definitions",
-          "commit": "06ec76166850779e638c4da27934fafae81b135c",
+          "commit": "a0455e92881077b3da33c7753fdb4486712d8f5b",
           "path": "hypercerts-api/lexicons/app.certified.badge.listBadgeDefinitions.json",
           "activeModule": null
         },
@@ -840,7 +867,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-entity-follow-queries",
           "branch": "api/entity-follow-queries",
-          "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+          "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
           "path": "hypercerts-api/lexicons/app.certified.graph.getEntityFollow.json",
           "activeModule": "modules/entity-follow/manifest.json"
         },
@@ -896,9 +923,9 @@
         "x-lexicon-id": "app.certified.graph.getFollow",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.graph.getFollow.json",
           "activeModule": "modules/actor-follow/manifest.json"
         },
@@ -977,9 +1004,9 @@
         "x-lexicon-id": "app.certified.graph.listActorFollowers",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.graph.listActorFollowers.json",
           "activeModule": "modules/actor-follow/manifest.json"
         },
@@ -1058,9 +1085,9 @@
         "x-lexicon-id": "app.certified.graph.listActorFollowing",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.graph.listActorFollowing.json",
           "activeModule": "modules/actor-follow/manifest.json"
         },
@@ -1141,7 +1168,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-entity-follow-queries",
           "branch": "api/entity-follow-queries",
-          "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+          "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
           "path": "hypercerts-api/lexicons/app.certified.graph.listEntityFollowers.json",
           "activeModule": "modules/entity-follow/manifest.json"
         },
@@ -1222,7 +1249,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-entity-follow-queries",
           "branch": "api/entity-follow-queries",
-          "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+          "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
           "path": "hypercerts-api/lexicons/app.certified.graph.listEntityFollowing.json",
           "activeModule": "modules/entity-follow/manifest.json"
         },
@@ -1290,7 +1317,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-recent-follows-queries",
           "branch": "api/recent-follows",
-          "commit": "ea9bff56a9447a20fd26a7b99946a5d84ad62e97",
+          "commit": "0503116f5d1b63d493ccdd2a7aa721da67caf875",
           "path": "hypercerts-api/lexicons/app.certified.graph.listRecentFollows.json",
           "activeModule": "modules/recent-follows/manifest.json"
         },
@@ -1336,9 +1363,9 @@
         "x-lexicon-id": "app.certified.location.getLocation",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.location.getLocation.json",
           "activeModule": "modules/location/manifest.json"
         },
@@ -1454,9 +1481,9 @@
         "x-lexicon-id": "app.certified.location.listLocations",
         "x-hypercerts-coverage": "primary",
         "x-hypercerts-source": {
-          "worktree": "happyview",
+          "worktree": "happyview-profile-history-rewrite",
           "branch": "api/profile-queries",
-          "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+          "commit": "134b24d020a01876e51f857e32726ccdf670200d",
           "path": "hypercerts-api/lexicons/app.certified.location.listLocations.json",
           "activeModule": "modules/location/manifest.json"
         },
@@ -1504,7 +1531,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-worktree",
           "branch": "api/activity-queries",
-          "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+          "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
           "path": "hypercerts-api/lexicons/org.hypercerts.claim.getActivity.json",
           "activeModule": "modules/activity/manifest.json"
         },
@@ -1656,7 +1683,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-worktree",
           "branch": "api/activity-queries",
-          "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+          "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
           "path": "hypercerts-api/lexicons/org.hypercerts.claim.listActivities.json",
           "activeModule": "modules/activity/manifest.json"
         },
@@ -1813,7 +1840,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-worktree",
           "branch": "api/activity-queries",
-          "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+          "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
           "path": "hypercerts-api/lexicons/org.hypercerts.claim.searchActivities.json",
           "activeModule": "modules/activity/manifest.json"
         },
@@ -1865,7 +1892,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-phase1",
           "branch": "api/collection-queries",
-          "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+          "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
           "path": "hypercerts-api/lexicons/org.hypercerts.collection.getCollection.json",
           "activeModule": "modules/collection/manifest.json"
         },
@@ -1937,7 +1964,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-phase1",
           "branch": "api/collection-queries",
-          "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+          "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
           "path": "hypercerts-api/lexicons/org.hypercerts.collection.listCollectionItems.json",
           "activeModule": "modules/collection/manifest.json"
         },
@@ -2101,7 +2128,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-phase1",
           "branch": "api/collection-queries",
-          "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+          "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
           "path": "hypercerts-api/lexicons/org.hypercerts.collection.listCollections.json",
           "activeModule": "modules/collection/manifest.json"
         },
@@ -2270,7 +2297,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-activity-queries-phase1",
           "branch": "api/collection-queries",
-          "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+          "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
           "path": "hypercerts-api/lexicons/org.hypercerts.collection.searchCollections.json",
           "activeModule": "modules/collection/manifest.json"
         },
@@ -2318,7 +2345,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-context-attachments-queries",
           "branch": "api/context-attachments",
-          "commit": "f74ac503ce3130c719c54d5605ad7e4a6665f9f8",
+          "commit": "43bafb3ef58c0bcb6b627f1b8bd905aa579d4e00",
           "path": "hypercerts-api/lexicons/org.hypercerts.context.getAttachment.json",
           "activeModule": "modules/context-attachments/manifest.json"
         },
@@ -2374,7 +2401,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-context-evaluations-queries",
           "branch": "api/context-evaluations",
-          "commit": "8aa3da8c87acad6ce671b02a3cacd8ab4f5a7b84",
+          "commit": "52014876cadf9d01b06507cf06ae6649a1d42dfa",
           "path": "hypercerts-api/lexicons/org.hypercerts.context.getEvaluation.json",
           "activeModule": "modules/context-evaluation/manifest.json"
         },
@@ -2512,7 +2539,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-context-attachments-queries",
           "branch": "api/context-attachments",
-          "commit": "f74ac503ce3130c719c54d5605ad7e4a6665f9f8",
+          "commit": "43bafb3ef58c0bcb6b627f1b8bd905aa579d4e00",
           "path": "hypercerts-api/lexicons/org.hypercerts.context.listAttachments.json",
           "activeModule": "modules/context-attachments/manifest.json"
         },
@@ -2635,7 +2662,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-context-evaluations-queries",
           "branch": "api/context-evaluations",
-          "commit": "8aa3da8c87acad6ce671b02a3cacd8ab4f5a7b84",
+          "commit": "52014876cadf9d01b06507cf06ae6649a1d42dfa",
           "path": "hypercerts-api/lexicons/org.hypercerts.context.listEvaluations.json",
           "activeModule": "modules/context-evaluation/manifest.json"
         },
@@ -2683,7 +2710,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-funding-receipts-queries",
           "branch": "api/funding-receipts",
-          "commit": "a6c7f4cd88ab98694d9c545d2d32a105e76a6a1c",
+          "commit": "d3643a26c0bab24972b847fbf3e07794702aea04",
           "path": "hypercerts-api/lexicons/org.hypercerts.funding.getReceipt.json",
           "activeModule": null
         },
@@ -2855,7 +2882,7 @@
         "x-hypercerts-source": {
           "worktree": "happyview-funding-receipts-queries",
           "branch": "api/funding-receipts",
-          "commit": "a6c7f4cd88ab98694d9c545d2d32a105e76a6a1c",
+          "commit": "d3643a26c0bab24972b847fbf3e07794702aea04",
           "path": "hypercerts-api/lexicons/org.hypercerts.funding.listReceipts.json",
           "activeModule": null
         },
@@ -2918,6 +2945,45 @@
         "properties": {
           "actor": {
             "$ref": "#/components/schemas/app.certified.actor.getOrganization.organizationActorView"
+          }
+        }
+      },
+      "app.certified.actor.getOrganizations.organizationResult": {
+        "type": "object",
+        "required": [
+          "actor",
+          "organization"
+        ],
+        "properties": {
+          "actor": {
+            "type": "string",
+            "description": "Actor DID from the corresponding request occurrence.",
+            "format": "did"
+          },
+          "organization": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/app.certified.actor.getOrganization.organizationActorView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "app.certified.actor.getOrganizations.output": {
+        "type": "object",
+        "required": [
+          "organizations"
+        ],
+        "properties": {
+          "organizations": {
+            "type": "array",
+            "description": "One result per supplied actor occurrence, in input order. The organization is null when no indexed sidecar exists.",
+            "items": {
+              "$ref": "#/components/schemas/app.certified.actor.getOrganizations.organizationResult"
+            }
           }
         }
       },
@@ -4506,7 +4572,7 @@
       }
     }
   },
-  "x-hypercerts-source": "api/profile-queries@4a3477631e08345c239ca9596c70cd08473812e6",
+  "x-hypercerts-source": "api/profile-queries@134b24d020a01876e51f857e32726ccdf670200d",
   "x-hypercerts-unresolved-references": [
     {
       "component": "app.certified.actor.organization.main",

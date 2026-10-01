@@ -7,8 +7,21 @@
       "source": {
         "activeModule": "modules/organization/manifest.json",
         "branch": "api/organization-queries",
-        "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+        "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
         "path": "hypercerts-api/lexicons/app.certified.actor.getOrganization.json",
+        "worktree": "happyview-organization-queries"
+      },
+      "type": "query"
+    },
+    {
+      "coverage": "branch-only",
+      "file": "sources/lexicons/app.certified.actor.getOrganizations.json",
+      "id": "app.certified.actor.getOrganizations",
+      "source": {
+        "activeModule": "modules/organization/manifest.json",
+        "branch": "api/organization-queries",
+        "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
+        "path": "hypercerts-api/lexicons/app.certified.actor.getOrganizations.json",
         "worktree": "happyview-organization-queries"
       },
       "type": "query"
@@ -20,9 +33,9 @@
       "source": {
         "activeModule": "modules/profile/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.actor.getProfile.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -33,9 +46,9 @@
       "source": {
         "activeModule": "modules/profile/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.actor.getProfiles.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -46,7 +59,7 @@
       "source": {
         "activeModule": "modules/organization/manifest.json",
         "branch": "api/organization-queries",
-        "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+        "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
         "path": "hypercerts-api/lexicons/app.certified.actor.listOrganizations.json",
         "worktree": "happyview-organization-queries"
       },
@@ -59,9 +72,9 @@
       "source": {
         "activeModule": "modules/profile/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.actor.listProfiles.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -72,7 +85,7 @@
       "source": {
         "activeModule": "modules/organization/manifest.json",
         "branch": "api/organization-queries",
-        "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+        "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
         "path": "hypercerts-api/lexicons/app.certified.actor.searchOrganizations.json",
         "worktree": "happyview-organization-queries"
       },
@@ -85,9 +98,9 @@
       "source": {
         "activeModule": "modules/profile/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.actor.searchProfiles.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -98,7 +111,7 @@
       "source": {
         "activeModule": null,
         "branch": "api/badge-definitions",
-        "commit": "06ec76166850779e638c4da27934fafae81b135c",
+        "commit": "a0455e92881077b3da33c7753fdb4486712d8f5b",
         "path": "hypercerts-api/lexicons/app.certified.badge.getBadgeDefinition.json",
         "worktree": "happyview-badge-definitions-queries"
       },
@@ -111,7 +124,7 @@
       "source": {
         "activeModule": null,
         "branch": "api/badge-definitions",
-        "commit": "06ec76166850779e638c4da27934fafae81b135c",
+        "commit": "a0455e92881077b3da33c7753fdb4486712d8f5b",
         "path": "hypercerts-api/lexicons/app.certified.badge.listBadgeDefinitions.json",
         "worktree": "happyview-badge-definitions-queries"
       },
@@ -124,7 +137,7 @@
       "source": {
         "activeModule": "modules/entity-follow/manifest.json",
         "branch": "api/entity-follow-queries",
-        "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+        "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
         "path": "hypercerts-api/lexicons/app.certified.graph.getEntityFollow.json",
         "worktree": "happyview-entity-follow-queries"
       },
@@ -137,9 +150,9 @@
       "source": {
         "activeModule": "modules/actor-follow/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.graph.getFollow.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -150,9 +163,9 @@
       "source": {
         "activeModule": "modules/actor-follow/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.graph.listActorFollowers.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -163,9 +176,9 @@
       "source": {
         "activeModule": "modules/actor-follow/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.graph.listActorFollowing.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -176,7 +189,7 @@
       "source": {
         "activeModule": "modules/entity-follow/manifest.json",
         "branch": "api/entity-follow-queries",
-        "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+        "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
         "path": "hypercerts-api/lexicons/app.certified.graph.listEntityFollowers.json",
         "worktree": "happyview-entity-follow-queries"
       },
@@ -189,7 +202,7 @@
       "source": {
         "activeModule": "modules/entity-follow/manifest.json",
         "branch": "api/entity-follow-queries",
-        "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+        "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
         "path": "hypercerts-api/lexicons/app.certified.graph.listEntityFollowing.json",
         "worktree": "happyview-entity-follow-queries"
       },
@@ -202,7 +215,7 @@
       "source": {
         "activeModule": "modules/recent-follows/manifest.json",
         "branch": "api/recent-follows",
-        "commit": "ea9bff56a9447a20fd26a7b99946a5d84ad62e97",
+        "commit": "0503116f5d1b63d493ccdd2a7aa721da67caf875",
         "path": "hypercerts-api/lexicons/app.certified.graph.listRecentFollows.json",
         "worktree": "happyview-recent-follows-queries"
       },
@@ -215,9 +228,9 @@
       "source": {
         "activeModule": "modules/location/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.location.getLocation.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -228,9 +241,9 @@
       "source": {
         "activeModule": "modules/location/manifest.json",
         "branch": "api/profile-queries",
-        "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
+        "commit": "134b24d020a01876e51f857e32726ccdf670200d",
         "path": "hypercerts-api/lexicons/app.certified.location.listLocations.json",
-        "worktree": "happyview"
+        "worktree": "happyview-profile-history-rewrite"
       },
       "type": "query"
     },
@@ -241,7 +254,7 @@
       "source": {
         "activeModule": "modules/activity/manifest.json",
         "branch": "api/activity-queries",
-        "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+        "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
         "path": "hypercerts-api/lexicons/org.hypercerts.claim.getActivity.json",
         "worktree": "happyview-activity-queries-worktree"
       },
@@ -254,7 +267,7 @@
       "source": {
         "activeModule": "modules/activity/manifest.json",
         "branch": "api/activity-queries",
-        "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+        "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
         "path": "hypercerts-api/lexicons/org.hypercerts.claim.listActivities.json",
         "worktree": "happyview-activity-queries-worktree"
       },
@@ -267,7 +280,7 @@
       "source": {
         "activeModule": "modules/activity/manifest.json",
         "branch": "api/activity-queries",
-        "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+        "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
         "path": "hypercerts-api/lexicons/org.hypercerts.claim.searchActivities.json",
         "worktree": "happyview-activity-queries-worktree"
       },
@@ -280,7 +293,7 @@
       "source": {
         "activeModule": "modules/collection/manifest.json",
         "branch": "api/collection-queries",
-        "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+        "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
         "path": "hypercerts-api/lexicons/org.hypercerts.collection.getCollection.json",
         "worktree": "happyview-activity-queries-phase1"
       },
@@ -293,7 +306,7 @@
       "source": {
         "activeModule": "modules/collection/manifest.json",
         "branch": "api/collection-queries",
-        "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+        "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
         "path": "hypercerts-api/lexicons/org.hypercerts.collection.listCollectionItems.json",
         "worktree": "happyview-activity-queries-phase1"
       },
@@ -306,7 +319,7 @@
       "source": {
         "activeModule": "modules/collection/manifest.json",
         "branch": "api/collection-queries",
-        "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+        "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
         "path": "hypercerts-api/lexicons/org.hypercerts.collection.listCollections.json",
         "worktree": "happyview-activity-queries-phase1"
       },
@@ -319,7 +332,7 @@
       "source": {
         "activeModule": "modules/collection/manifest.json",
         "branch": "api/collection-queries",
-        "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+        "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
         "path": "hypercerts-api/lexicons/org.hypercerts.collection.searchCollections.json",
         "worktree": "happyview-activity-queries-phase1"
       },
@@ -332,7 +345,7 @@
       "source": {
         "activeModule": "modules/context-attachments/manifest.json",
         "branch": "api/context-attachments",
-        "commit": "f74ac503ce3130c719c54d5605ad7e4a6665f9f8",
+        "commit": "43bafb3ef58c0bcb6b627f1b8bd905aa579d4e00",
         "path": "hypercerts-api/lexicons/org.hypercerts.context.getAttachment.json",
         "worktree": "happyview-context-attachments-queries"
       },
@@ -345,7 +358,7 @@
       "source": {
         "activeModule": "modules/context-evaluation/manifest.json",
         "branch": "api/context-evaluations",
-        "commit": "8aa3da8c87acad6ce671b02a3cacd8ab4f5a7b84",
+        "commit": "52014876cadf9d01b06507cf06ae6649a1d42dfa",
         "path": "hypercerts-api/lexicons/org.hypercerts.context.getEvaluation.json",
         "worktree": "happyview-context-evaluations-queries"
       },
@@ -358,7 +371,7 @@
       "source": {
         "activeModule": "modules/context-attachments/manifest.json",
         "branch": "api/context-attachments",
-        "commit": "f74ac503ce3130c719c54d5605ad7e4a6665f9f8",
+        "commit": "43bafb3ef58c0bcb6b627f1b8bd905aa579d4e00",
         "path": "hypercerts-api/lexicons/org.hypercerts.context.listAttachments.json",
         "worktree": "happyview-context-attachments-queries"
       },
@@ -371,7 +384,7 @@
       "source": {
         "activeModule": "modules/context-evaluation/manifest.json",
         "branch": "api/context-evaluations",
-        "commit": "8aa3da8c87acad6ce671b02a3cacd8ab4f5a7b84",
+        "commit": "52014876cadf9d01b06507cf06ae6649a1d42dfa",
         "path": "hypercerts-api/lexicons/org.hypercerts.context.listEvaluations.json",
         "worktree": "happyview-context-evaluations-queries"
       },
@@ -384,7 +397,7 @@
       "source": {
         "activeModule": null,
         "branch": "api/funding-receipts",
-        "commit": "a6c7f4cd88ab98694d9c545d2d32a105e76a6a1c",
+        "commit": "d3643a26c0bab24972b847fbf3e07794702aea04",
         "path": "hypercerts-api/lexicons/org.hypercerts.funding.getReceipt.json",
         "worktree": "happyview-funding-receipts-queries"
       },
@@ -397,7 +410,7 @@
       "source": {
         "activeModule": null,
         "branch": "api/funding-receipts",
-        "commit": "a6c7f4cd88ab98694d9c545d2d32a105e76a6a1c",
+        "commit": "d3643a26c0bab24972b847fbf3e07794702aea04",
         "path": "hypercerts-api/lexicons/org.hypercerts.funding.listReceipts.json",
         "worktree": "happyview-funding-receipts-queries"
       },
@@ -406,67 +419,67 @@
   ],
   "pinnedLexiconPackage": "1.4.0",
   "primaryBranch": "api/profile-queries",
-  "primaryCommit": "4a3477631e08345c239ca9596c70cd08473812e6",
-  "primaryWorktree": "happyview",
+  "primaryCommit": "134b24d020a01876e51f857e32726ccdf670200d",
+  "primaryWorktree": "happyview-profile-history-rewrite",
   "sourcePolicy": "Only Lexicon main query/procedure definitions; active root-manifest membership determines primary vs branch-only. Unreferenced query Lexicons are included as unmanifested-unsupported.",
   "sourceRoots": {
-    "happyview": {
-      "branch": "api/profile-queries",
-      "commit": "4a3477631e08345c239ca9596c70cd08473812e6",
-      "manifestPath": "hypercerts-api/manifest.json",
-      "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
-    },
     "happyview-activity-queries-phase1": {
       "branch": "api/collection-queries",
-      "commit": "081c073b6050a6536e1af2579c1f3a733e227935",
+      "commit": "2b3162b785299d2362af7f725eff4ca5e47ce609",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-activity-queries-worktree": {
       "branch": "api/activity-queries",
-      "commit": "c0ae1fcb78585f3dccd570eb189e1ad08cba06a1",
+      "commit": "43ac93be85747e09b8b5f6fa4aafb27d536f9367",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-badge-definitions-queries": {
       "branch": "api/badge-definitions",
-      "commit": "06ec76166850779e638c4da27934fafae81b135c",
+      "commit": "a0455e92881077b3da33c7753fdb4486712d8f5b",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-context-attachments-queries": {
       "branch": "api/context-attachments",
-      "commit": "f74ac503ce3130c719c54d5605ad7e4a6665f9f8",
+      "commit": "43bafb3ef58c0bcb6b627f1b8bd905aa579d4e00",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-context-evaluations-queries": {
       "branch": "api/context-evaluations",
-      "commit": "8aa3da8c87acad6ce671b02a3cacd8ab4f5a7b84",
+      "commit": "52014876cadf9d01b06507cf06ae6649a1d42dfa",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-entity-follow-queries": {
       "branch": "api/entity-follow-queries",
-      "commit": "649c8527f85f6099e8ad269cf855342bd7fd4c03",
+      "commit": "81bab9cfc1fdf7ee52bc892274b2d016a519c0bc",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-funding-receipts-queries": {
       "branch": "api/funding-receipts",
-      "commit": "a6c7f4cd88ab98694d9c545d2d32a105e76a6a1c",
+      "commit": "d3643a26c0bab24972b847fbf3e07794702aea04",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-organization-queries": {
       "branch": "api/organization-queries",
-      "commit": "1a786a48744ec48bf27acc37ace6e3ad6cc37d7f",
+      "commit": "918a72afabd987110ab9eaaa06e1e8eb51a0b916",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     },
     "happyview-recent-follows-queries": {
       "branch": "api/recent-follows",
-      "commit": "ea9bff56a9447a20fd26a7b99946a5d84ad62e97",
+      "commit": "0503116f5d1b63d493ccdd2a7aa721da67caf875",
+      "manifestPath": "hypercerts-api/manifest.json",
+      "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
+    },
+    "happyview-profile-history-rewrite": {
+      "branch": "api/profile-queries",
+      "commit": "134b24d020a01876e51f857e32726ccdf670200d",
       "manifestPath": "hypercerts-api/manifest.json",
       "targetHappyViewRevision": "a2f347e605d7cd9c11669b320e43c10dbfe982e3"
     }

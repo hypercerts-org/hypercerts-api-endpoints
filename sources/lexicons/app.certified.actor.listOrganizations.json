@@ -4,16 +4,10 @@
   "defs": {
     "main": {
       "type": "query",
-      "description": "Lists actors with indexed organization sidecars. Repeated unbracketed array values accept at most 100 entries; values within actors and organizationTypes use OR, while distinct filters use AND. Omitted visibility imposes no restriction, including public, unlisted, and unspecified values; supplied visibility is an exact string match. Results sort by (createdAt, uri), default desc, with a direction-bound opaque cursor. Keep other parameters unchanged between pages. Authentication is not required.",
+      "description": "Lists actors with indexed organization sidecars. organizationTypes accepts at most 100 repeated unbracketed values and uses OR within that filter; distinct filters use AND. Omitted visibility imposes no restriction, including public, unlisted, and unspecified values; supplied visibility is an exact string match. Results sort by (createdAt, uri), default desc, with a direction-bound opaque cursor. Keep other parameters unchanged between pages. Authentication is not required.",
       "parameters": {
         "type": "params",
         "properties": {
-          "actors": {
-            "type": "array",
-            "maxLength": 100,
-            "description": "Actor DIDs whose organization sidecars are included; DIDs only, with OR within this filter.",
-            "items": { "type": "string", "format": "did" }
-          },
           "organizationTypes": {
             "type": "array",
             "maxLength": 100,
